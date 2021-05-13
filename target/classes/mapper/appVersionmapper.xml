@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yun.dao.appVersionDao">
+
+    <resultMap id="appversion" type="appversion" autoMapping="true">
+        <id property="id" column="id"/>
+    </resultMap>
+
+
+
+    <insert id="addVer" parameterType="appversion" >
+        insert into app_version(appId, versionNo, versionInfo, publishStatus, downloadLink, versionSize, createBy, creationDate, modifyDate, apkLocPath, apkFileName) values
+        (#{appId},#{versionNo},#{versionInfo},#{publishStatus},#{downloadLink},#{versionSize},#{createBy},#{creationDate},#{modifyDate},#{apkLocPath},#{apkFileName})
+    </insert>
+
+
+
+
+
+    <update id="UpdVerId" parameterType="appversion">
+        update app_version
+        <set>
+            <if test="versionNo!=null and versionNo!=''">
+                versionNo=#{versionNo},
+            </if>
+
+            <if test="versionInfo!=null and versionInfo!=''">
+                versionInfo=#{versionInfo},
+            </if>
+
+            <if test="publishStatus!=null and publishStatus!=''">
+                publishStatus=#{publishStatus},
+            </if>
+
+            <if test="downloadLink!=null and downloadLink!=''">
+                downloadLink=#{downloadLink},
+            </if>
+
+            <if test="versionSize!=null and versionSize!=''">
+                versionSize=#{versionSize},
+            </if>
+
+            <if test="createBy!=null and createBy!=''">
+                createBy=#{createBy},
+            </if>
+
+            <if test="creationDate!=null">
+                creationDate=#{creationDate},
+            </if>
+
+            <if test="modifyDate!=null">
+                modifyDate=#{modifyDate},
+            </if>
+
+            <if test="apkLocPath!=null and apkLocPath!=''">
+                apkLocPath=#{apkLocPath},
+            </if>
+
+            <if test="apkFileName!=null and apkFileName!=''">
+                apkFileName=#{apkFileName},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+    <delete id="DelVerId">
+        delete from app_version
+        where id = #{id}
+    </delete>
+
+
+    <select id="getOnetVer" resultMap="appversion">
+        select * from app_version
+        where id = #{id}
+    </select>
+
+</mapper>

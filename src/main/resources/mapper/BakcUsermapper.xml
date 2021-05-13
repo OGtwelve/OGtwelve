@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yun.dao.BackUserdao">
+    <resultMap id="appInfo" type="appInfo" autoMapping="true">
+        <id column="id" property="id"/>
+    </resultMap>
+
+    <resultMap id="BackUser" type="BackUser" autoMapping="true">
+        <id column="id" property="id"/>
+    </resultMap>
+
+    <select id="getBackUserlogin" resultType="backUser">
+        select * from backend_user
+        where userCode=#{userCode} and userPassword=#{userPassword}
+    </select>
+
+    <insert id="addBack" parameterType="BackUser">
+        insert into backend_user(userCode, userName, userType, createBy, creationDate, modifyBy, modifyDate, userPassword) VALUES
+        (#{userCode},#{userName},#{userType},#{createBy},#{creationDate},#{modifyBy},#{modifyDate},#{userPassword})
+    </insert>
+
+    <select id="getAllApp" resultMap="appInfo">
+        select * from app_info
+    </select>
+
+    <select id="getBackAll" resultMap="BackUser">
+        select * from backend_user
+    </select>
+
+
+
+
+
+
+
+
+    <select id="getBackId" resultMap="BackUser">
+        select * from backend_user
+        where id=#{id}
+    </select>
+
+
+    <update id="UpdBackId" parameterType="BackUser">
+        update backend_user
+        <set>
+            <if test="userName!=null and userName!=''">
+                userName=#{userName},
+            </if>
+
+            <if test="modifyDate!=null">
+                modifyDate=#{modifyDate},
+            </if>
+
+            <if test="userPassword!=null and userPassword!=''">
+                userPassword=#{userPassword},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+    <delete id="DelBackId">
+        delete from backend_user
+        where id = #{id}
+    </delete>
+
+</mapper>

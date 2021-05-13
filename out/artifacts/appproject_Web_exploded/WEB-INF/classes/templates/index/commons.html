@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--侧边栏-->
+<nav class="main-layout-side" th:fragment="sidebar">
+    <div class="m-logo">
+    </div>
+    <ul class="layui-nav layui-nav-tree" lay-filter="leftNav">
+        <li class="layui-nav-item" th:if="${session.loginDevUser.getId()} < 1000" >
+            <a th:href="@{/menu1}"><i class="iconfont">&#xe604;</i>App管理</a>
+        </li>
+        <li class="layui-nav-item" th:if="${session.loginDevUser.getId()} >= 1000" >
+            <a th:href="@{/menu2}"><i class="iconfont">&#xe604;</i>App管理</a>
+        </li>
+
+
+        <li class="layui-nav-item" th:if="${session.loginDevUser.getId()} < 1000">
+            <a th:href="@{/user}"><i class="iconfont">&#xe600;</i>用户管理</a>
+        </li>
+
+
+        <li class="layui-nav-item" th:if="${session.loginDevUser.getId()} < 1000">
+            <a th:href="@{/admin-infoDev1}" data-text="个人信息"><i class="iconfont">&#xe606;</i>个人信息</a>
+        </li>
+        <li class="layui-nav-item" th:if="${session.loginDevUser.getId()} >= 1000">
+            <a th:href="@{/admin-infoDev2}" data-text="个人信息"><i class="iconfont">&#xe606;</i>个人信息</a>
+        </li>
+
+        <li class="layui-nav-item" th:if="${session.loginDevUser.getId()} < 1000">
+            <a th:href="@{/indexRegisters}"><i class="iconfont">&#xe600;</i>注册</a>
+        </li>
+        <li class="layui-nav-item">
+            <a th:href="@{/outLogin}"><i class="iconfont">&#xe600;</i>退出登录</a>
+        </li>
+    </ul>
+</nav>
+
+
+
+
+</html>

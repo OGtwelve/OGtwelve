@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yun.dao.appdao">
+    <resultMap id="appInfo" type="appInfo" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="dictionary" column="dictionary" autoMapping="true">
+            <id property="id" column="id"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="dictionary" type="dictionary" autoMapping="true">
+        <id property="id" column="id"/>
+    </resultMap>
+
+
+    <select id="getAppId" resultMap="appInfo">
+        select app_info.*,data_dictionary.valueName,data_dictionary.valueId
+        from app_info
+        inner join data_dictionary
+        on app_info.`status` = data_dictionary.id
+        where app_info.id=#{id}
+    </select>
+
+    <insert id="addApp" parameterType="appInfo" >
+        insert into app_info(softwareName, APKName, softWareSize, updateDate, devId, appInfo, status, onSaleDate, offSaleDate, categoryLevel3, downloads, creationDate, modifyDate, categoryLevel1, categoryLevel2, logoLocPath, versionId, auditId) values
+        (#{softwareName},#{APKName},#{softWareSize},#{updateDate},#{devId},#{appInfo},#{status},#{onSaleDate},#{offSaleDate},#{categoryLevel3},#{downloads},#{creationDate},#{modifyDate},#{categoryLevel1},#{categoryLevel2},#{logoLocPath},#{versionId},#{auditId})
+    </insert>
+
+    <update id="UpdAppId" parameterType="appInfo">
+        update app_info
+        <set>
+            <if test="softwareName!=null and softwareName!=''">
+                softwareName=#{softwareName},
+            </if>
+
+            <if test="APKName!=null and APKName!=''">
+                APKName=#{APKName},
+            </if>
+
+            <if test="softWareSize!=null and softWareSize!=''">
+                softWareSize=#{softWareSize},
+            </if>
+
+            <if test="updateDate!=null">
+                updateDate=#{updateDate},
+            </if>
+
+            <if test="devId!=null and devId!=''">
+                devId=#{devId},
+            </if>
+            <if test="appInfo!=null and appInfo!=''">
+                appInfo=#{appInfo},
+            </if>
+            <if test="status!=null and status!=''">
+                status=#{status},
+            </if>
+
+            <if test="onSaleDate!=null">
+                onSaleDate=#{onSaleDate},
+            </if>
+
+            <if test="offSaleDate!=null">
+                offSaleDate=#{offSaleDate},
+            </if>
+
+            <if test="categoryLevel3!=null and categoryLevel3!=''">
+                categoryLevel3=#{categoryLevel3},
+            </if>
+
+            <if test="downloads!=null and downloads!=''">
+                downloads=#{downloads},
+            </if>
+
+            <if test="creationDate!=null">
+                creationDate=#{creationDate},
+            </if>
+
+            <if test="modifyDate!=null">
+                modifyDate=#{modifyDate},
+            </if>
+
+            <if test="categoryLevel1!=null and categoryLevel1!=''">
+                categoryLevel1=#{categoryLevel1},
+            </if>
+
+            <if test="categoryLevel2!=null and categoryLevel2!=''">
+                categoryLevel2=#{categoryLevel2},
+            </if>
+
+            <if test="logoLocPath!=null and logoLocPath!=''">
+                logoLocPath=#{logoLocPath},
+            </if>
+
+            <if test="versionId!=null and versionId!=''">
+                versionId=#{versionId},
+            </if>
+
+            <if test="auditId!=null and auditId!=''">
+                auditId=#{auditId},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+    <delete id="delAppVer">
+        delete app_info,app_version from app_info
+        inner join app_version
+        on app_info.id = app_version.appId
+        where app_info.id = #{id}
+    </delete>
+
+    <delete id="delApp">
+        delete from app_info
+        where id=#{id}
+    </delete>
+
+    <select id="getAll" resultMap="appInfo">
+        select * from app_info
+        where devId = #{devId}
+    </select>
+
+    <select id="getName" resultMap="dictionary">
+        select * from data_dictionary
+        where id =7 or id = 8
+    </select>
+
+    <select id="getNameAll" resultMap="dictionary">
+        select * from data_dictionary
+        where id =5 or id = 6
+    </select>
+</mapper>

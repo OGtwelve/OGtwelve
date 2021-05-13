@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yun.dao.appcatedao">
+    <resultMap id="appversion" type="appversion" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="appInfo" column="appInfo">
+            <id property="id" column="id"/>
+            <result column="softwareName" property="softwareName"/>
+        </association>
+        <association property="dictionary" column="dictionary" autoMapping="true">
+            <id property="id" column="id"/>
+        </association>
+    </resultMap>
+
+    <select id="getAppVer" resultMap="appversion">
+        select app_version.*,app_info.softwareName,data_dictionary.valueId from app_info
+        inner join app_version
+        on app_info.id = app_version.appId
+        inner join data_dictionary
+        on app_version.publishStatus=data_dictionary.id
+        where app_info.id=#{id} ORDER BY data_dictionary.creationDate asc
+    </select>
+
+    <select id="getOne" resultType="appcategory">
+        SELECT * FROM app_category
+        where app_category.categoryCode = 'level1'
+    </select>
+
+    <select id="getTwo" resultType="appcategory">
+        SELECT * FROM app_category
+        where app_category.categoryCode = 'level2'
+    </select>
+
+    <select id="getThree" resultType="appcategory">
+        SELECT * FROM app_category
+        where app_category.categoryCode = 'level3'
+    </select>
+</mapper>

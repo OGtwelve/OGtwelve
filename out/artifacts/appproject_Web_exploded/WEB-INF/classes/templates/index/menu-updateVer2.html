@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en_US" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>网站后台管理模版</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/admin/layui/css/layui.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{~/admin/css/admin.css}" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="wrap-container">
+    <div class="jumbotron">
+        <h1>App版本修改页面</h1>
+    </div>
+    <form th:action="@{/Ver/VerUpd}" class="layui-form" style="width: 90%;padding-top: 20px;">
+        <div class="layui-form-item">
+            <input type="hidden" name="id" th:value="${ver.id}">
+            <label class="layui-form-label">选择App：</label>
+            <div class="layui-input-block">
+                <select id="categoryLevel1" name="categoryLevel1" class="form-control">
+                    <option th:each="all : ${all}" th:selected="${all.id} == ${ver.appId}"
+                            th:value="${all.id}" th:text="${all.softwareName}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">版本编号：</label>
+            <div class="layui-input-block">
+                <input th:value="${ver.versionNo}"  type="text" name="versionNo" required lay-verify="required" placeholder="请输入版本编号" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">版本信息：</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${ver.versionInfo}"  name="versionInfo" required lay-verify="required" placeholder="请输入版本信息" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发布状态：</label>
+            <div class="layui-input-block">
+                <p style="color: red">11.发布,12.未发布</p>
+                <input type="text" th:value="${ver.publishStatus}"  name="versionInfo" required lay-verify="required" placeholder="请输入版本信息" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">apk下载链接：</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${ver.downloadLink}"  name="downloadLink" required lay-verify="required" placeholder="请输入apk下载链接" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">apk(版本)大小：</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${ver.versionSize}"  name="versionSize" required lay-verify="required" placeholder="请输入apk(版本)大小" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">apl文件名：</label>
+            <div class="layui-input-block">
+                <input type="text" th:value="${ver.apkFileName}"  name="apkFileName" required lay-verify="required" placeholder="请输入apl文件名"  class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" type="submit" lay-submit lay-filter="formDemo">立即提交</button>
+                <input type="button" class="layui-btn layui-btn-primary" name="Submit" value="返回" onclick="javascript:window.history.back(-1);">
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script th:src="@{~/admin/layui/layui.js}" type="text/javascript" charset="utf-8"></script>
+<script>
+    //Demo
+    layui.use(['form'], function() {
+        var form = layui.form();
+        form.render();
+        //监听提交
+        // form.on('submit(formDemo)', function(data) {
+        // 	layer.msg(JSON.stringify(data.field));
+        // 	return false;
+        // });
+    });
+</script>
+</body>
+
+</html>

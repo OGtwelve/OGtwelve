@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en_US" xmlns:th="http://www.thymeleaf.org">
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>网站后台管理模版</title>
+		<link rel="stylesheet" type="text/css" th:href="@{~/admin/layui/css/layui.css}" />
+		<link rel="stylesheet" type="text/css" th:href="@{~/admin/css/admin.css}" />
+
+	</head>
+	<body>
+	<div class="main-layout" id='main-layout'>
+		<!--侧边栏-->
+		<div th:replace="~{index/commons::sidebar}"></div>
+		<div class="main-layout-container">
+			<!--头部-->
+			<div class="main-layout-header" th:fragment="topbars">
+				<ul class="layui-nav" lay-filter="rightNav">
+					<li class="layui-nav-item"><a href="javascript:;" data-url="email.html" data-id='4' data-text="邮件系统"><i class="iconfont">&#xe603;</i></a></li>
+					<li class="layui-nav-item" th:if="${session.loginDevUser.getId()} < 1000">
+						<a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息" th:text="${session.loginDevUser.getUserName()}"></a>
+					</li>
+					<li class="layui-nav-item" th:if="${session.loginDevUser.getId()} >= 1000">
+						<a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息" th:text="${session.loginDevUser.getDevName()}"></a>
+					</li>
+				</ul>
+				<!--主体内容-->
+				<div class="layui-tab page-content-wrap">
+					<div class="layui-tab-content">
+						<div class="layui-tab-item layui-show">
+							<form class="layui-form"  style="width: 90%;padding-top: 20px;">
+								<div class="layui-form-item">
+									<label class="layui-form-label">ID：</label>
+									<div class="layui-input-block">
+										<input type="text" name="id" disabled autocomplete="off" class="layui-input layui-disabled" th:value="${session.loginDevUser.getId()}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">账号：</label>
+									<div class="layui-input-block">
+										<input type="text" name="devCode" disabled autocomplete="off" class="layui-input layui-disabled" th:value="${session.loginDevUser.getDevCode()}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">姓名：</label>
+									<div class="layui-input-block">
+										<input type="text" name="devName" disabled autocomplete="off" class="layui-input layui-disabled" th:value="${session.loginDevUser.getDevName()}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">邮箱：</label>
+									<div class="layui-input-block">
+										<input type="text" name="devEmail" disabled autocomplete="off" class="layui-input layui-disabled" th:value="${session.loginDevUser.getDevEmail()}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">介绍：</label>
+									<div class="layui-input-block">
+										<input type="text" name="devInfo" disabled autocomplete="off" class="layui-input layui-disabled" th:value="${session.loginDevUser.getDevInfo()}">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label">注册时间：</label>
+									<div class="layui-input-block">
+										<input type="text" name="creationDate" disabled autocomplete="off" class="layui-input layui-disabled"  th:value="${#dates.format(session.loginDevUser.getCreationDate(),'yyyy-MM-dd hh:mm:ss')}">
+									</div>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/static/js/jquery-1.8.3.min.js"></script>
+		<script src="/static/js/proviAppTable.js"></script>
+		<!--遮罩-->
+		<div class="main-mask">
+		</div>
+	</div>
+	<script src="../../static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		//Demo
+		layui.use(['form','element'], function(){
+		  var form = layui.form();
+		  var element = layui.element();
+		  form.render();
+		  //监听信息提交
+		  form.on('submit(adminInfo)', function(data){
+		    layer.msg(JSON.stringify(data.field));
+		    return false;
+		  });
+		  //监听密码提交
+		   form.on('submit(adminPassword)', function(data){
+		    layer.msg(JSON.stringify(data.field));
+		    return false;
+		  });
+		});
+	</script>
+	</body>
+</html>
