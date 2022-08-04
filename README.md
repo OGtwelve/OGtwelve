@@ -1,6 +1,5 @@
 - 👋 Hi, I’m @OGtwelve
 - 👀 I’m interested in basicly every develop language :-) focusing on Java mainly.
-- 🌱 I’m currently learning nginx and radis.
 - 📫 How to reach me ?
       Send message to my email account ogtwelve@ogtwelve.com.cn.
 
