@@ -1,5 +1,3 @@
-- [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=OGtwelve)](https://github.com/anuraghazra/github-readme-stats)
-
 - 👋 Hi, I’m Marshall Wang a.k.a OGtwelve;
 - 👀 I’m interested in basicly every develop language :-) focusing on Java mainly.
 - 📫 How to reach me ?
