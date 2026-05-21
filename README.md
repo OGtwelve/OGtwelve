@@ -7,7 +7,7 @@
 - StackOverflow: https://stackoverflow.com/users/15959331/ogtwelve
 - LeetCode: https://leetcode.cn/u/ogtwelve/
 
-- App Store: Tripkit by OGtwelve[https://apps.apple.com/us/app/tripkit-by-ogtwelve/id6762074289]
+- App Store: [Tripkit by OGtwelve](https://apps.apple.com/us/app/tripkit-by-ogtwelve/id6762074289)
 <!---
 OGtwelve/OGtwelve is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
