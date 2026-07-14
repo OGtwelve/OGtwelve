@@ -3,7 +3,7 @@
 - 📫 How to reach me ?
       Send message to my email ogtwelve@ogtwelve.com.cn
 
-- Blog: [https://ogtwelve.blog.csdn.net/](https://blog.csdn.net/qq_46046361?type=blog)
+- Resume: [https://www.ogtwelve.com.cn](https://ogtwelve.com.cn)
 - StackOverflow: https://stackoverflow.com/users/15959331/ogtwelve
 - LeetCode: https://leetcode.cn/u/ogtwelve/
 
