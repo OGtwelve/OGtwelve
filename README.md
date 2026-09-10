@@ -6,6 +6,7 @@
 - Resume: [https://www.ogtwelve.com.cn](https://ogtwelve.com.cn)
 - StackOverflow: https://stackoverflow.com/users/15959331/ogtwelve
 - LeetCode: https://leetcode.cn/u/ogtwelve/
+- LinkedIn: https://www.linkedin.com/in/marshall-wang-og12/
 
 - App Store: [Tripkit by OGtwelve](https://apps.apple.com/us/app/tripkit-by-ogtwelve/id6762074289)
 <!---
